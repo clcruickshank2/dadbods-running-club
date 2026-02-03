@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Dad Bods Running Club (Denver)</title>
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-neutral-50 text-neutral-900">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-50 border-b border-neutral-200/70 bg-neutral-50/80 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <nav class="flex items-center gap-5 text-sm">
+          <a href="index.html" class="font-medium text-neutral-900 hover:text-neutral-700">Overview</a>
+          <a href="about.html" class="font-medium text-neutral-900 hover:text-neutral-700">About Us</a>
+          <a href="index.html#contact" class="font-medium text-neutral-900 hover:text-neutral-700">Contact</a>
+        </nav>
+
+        <a
+          href="index.html#join"
+          class="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Join Now!
+        </a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-10">
+      <!-- Title -->
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-center">
+        About Us
+      </h1>
+
+      <p class="mt-4 text-center text-xl text-neutral-600 italic">
+        The founders behind the dad bods
+      </p>
+
+      <!-- Founders Grid -->
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        
+        <!-- Chris -->
+        <div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <div class="flex flex-col items-center">
+            <img
+              src="/chris.png"
+              alt="Chris"
+              class="h-40 w-40 rounded-full object-cover border-4 border-neutral-200"
+            />
+            <h2 class="mt-4 text-2xl font-bold">Chris</h2>
+          </div>
+          <p class="mt-4 text-neutral-700">
+            Chris is a Canadian import who landed in Denver two years ago. He's married, has a one-year-old, and a Sheepadoodle named Sammy who requires more attention than most people. A proudly mediocre runner since middle school, Chris is training for two half marathons in 2026 and fully embracing the "Dad Bod" lifestyle.
+          </p>
+        </div>
+
+        <!-- Jackson -->
+        <div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <div class="flex flex-col items-center">
+            <img
+              src="/jackson.png"
+              alt="Jackson"
+              class="h-40 w-40 rounded-full object-cover border-4 border-neutral-200"
+            />
+            <h2 class="mt-4 text-2xl font-bold">Jackson</h2>
+          </div>
+          <p class="mt-4 text-neutral-700">
+            Jackson has been in Denver for four years after relocating from San Diego. Soccer is his true passion, but running comes with the territory — so here we are. He's married with two kids and can often be found out on family walks around Wash Park. He's training for zero half marathons in 2026, but may consider a late entry just to beat Chris.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Back Button -->
+      <div class="mt-12 text-center">
+        <a
+          href="index.html"
+          class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50"
+        >
+          ← Back to Overview
+        </a>
+      </div>
+
+      <footer class="mt-12 pb-6 text-center text-xs text-neutral-500">
+        © <span id="y"></span> Dad Bods Running Club • Denver • We stretch (emotionally)
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
