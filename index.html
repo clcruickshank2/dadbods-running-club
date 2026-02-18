@@ -10,14 +10,25 @@
     
     <!-- Confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Google Fonts for brush-style text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
-    <!-- Optional: tweak a couple Tailwind defaults -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"],
+              marker: ["Permanent Marker", "cursive"],
+            },
+            colors: {
+              'dadbod-red': '#E54B2A',
+              'dadbod-teal': '#134E4A',
+              'dadbod-cream': '#FDF8F3',
+              'dadbod-green': '#22C55E',
             },
           },
         },
@@ -25,152 +36,171 @@
     </script>
   </head>
 
-  <body class="bg-neutral-50 text-neutral-900">
+  <body class="bg-dadbod-cream text-neutral-900">
     <!-- Top Nav -->
-    <header class="sticky top-0 z-50 border-b border-neutral-200/70 bg-neutral-50/80 backdrop-blur">
-      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <nav class="flex items-center gap-5 text-sm">
-          <a href="index.html" class="font-medium text-neutral-900 hover:text-neutral-700">Overview</a>
-          <a href="about.html" class="font-medium text-neutral-900 hover:text-neutral-700">About Us</a>
-          <a href="#contact" class="font-medium text-neutral-900 hover:text-neutral-700">Contact</a>
+    <header class="bg-dadbod-teal">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <!-- Logo + Name -->
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="Dad Bods Running Club" class="h-10 w-10 rounded-full" />
+          <span class="text-white font-bold text-lg">Dad Bods<br class="sm:hidden" /> Running Club</span>
+        </div>
+        
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-white/90 uppercase tracking-wide">
+          <a href="about.html" class="hover:text-white">About</a>
+          <a href="#next-run" class="hover:text-white">Schedule</a>
+          <a href="#contact" class="hover:text-white">Contact</a>
         </nav>
 
         <button
           id="open-modal-btn"
-          class="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
         >
-          Join Now!
+          Join the Club
         </button>
       </div>
     </header>
 
-    <main class="mx-auto max-w-5xl px-4 py-5">
-      <!-- Hero -->
-      <section id="overview">
-        <div class="flex flex-col items-center text-center py-10">
-          <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">
-            Dad Bods Running Club
-          </h1>
-
-          <div class="text-4xl md:text-6xl font-extrabold tracking-tight text-black">
-            (Denver)
-          </div>
-
-          <div class="mt-5">
-            <img
-              src="/logo.png"
-              alt="Dad Bods Running Club logo"
-              class="h-72 w-72 md:h-96 md:w-96"
-            />
-          </div>
-
-          <p class="mt-2 text-xl md:text-2xl italic text-neutral-700">
-            A running club for everyone
-          </p>
-        </div>
-      </section>
-
-      <!-- Details -->
-      <section id="details" class="mt-5">
-        <h2 class="text-xl font-bold">The details:</h2>
-
-        <div class="mt-4 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <dl class="grid gap-4 sm:grid-cols-2">
-            <div class="rounded-2xl bg-neutral-50 p-4">
-              <dt class="text-sm font-semibold text-neutral-600">When</dt>
-              <dd class="mt-1 text-lg font-bold">Every Wednesday at 6:30pm</dd>
-            </div>
-
-            <div class="rounded-2xl bg-neutral-50 p-4">
-              <dt class="text-sm font-semibold text-neutral-600">Where</dt>
-              <dd class="mt-1 text-lg font-bold">
-                Washington Park Boathouse
-                <a
-                  class="ml-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.google.com/maps/search/?api=1&query=Washington+Park+Boathouse+Denver"
-                >
-                  (Directions)
-                </a>
-              </dd>
-            </div>
-
-            <div class="rounded-2xl bg-neutral-50 p-4">
-              <dt class="text-sm font-semibold text-neutral-600">What</dt>
-              <dd class="mt-1 text-lg font-bold">3–5 mile loop at whatever pace feels right</dd>
-            </div>
-
-            <div class="rounded-2xl bg-neutral-50 p-4">
-              <dt class="text-sm font-semibold text-neutral-600">Who</dt>
-              <dd class="mt-1 text-lg font-bold">Everyone is welcome <span class="font-semibold text-black">(not just dads)</span></dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <!-- About teaser -->
-      <section class="mt-10 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <h2 class="text-xl font-bold">About Us</h2>
-        <p class="mt-3 text-neutral-700">
-          We're a low-key Denver running club for people who like jogging and not taking themselves too seriously.
-          Show up, run a loop, high-five someone, go live your life.
-        </p>
-        <a
-          href="about.html"
-          class="mt-4 inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700"
-        >
-          Meet the founders →
-        </a>
-      </section>
-
-      <!-- Join / Contact -->
-      <section id="join" class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 class="text-xl font-bold">Join Now</h2>
-          <p class="mt-3 text-neutral-700">
-            Want to make it official? Sign up for updates and occasional dad jokes.
-          </p>
+    <main>
+      <!-- Hero Section -->
+      <section class="min-h-[calc(100vh-80px)]">
+        <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-0">
           
-          <form id="signup-form" class="mt-4">
-            <div class="flex flex-col gap-3 sm:flex-row">
+          <!-- Left Column - Cream Background -->
+          <div class="px-6 py-12 lg:py-20 lg:px-12">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-dadbod-red/10 border border-dadbod-red/30 rounded-full px-4 py-2 text-sm font-semibold text-dadbod-red">
+              <span>🏃</span>
+              <span>EVERY WEDNESDAY · 6:30PM</span>
+            </div>
+            
+            <!-- Big Headline -->
+            <h1 class="mt-8 font-marker text-5xl md:text-6xl lg:text-7xl leading-tight">
+              <span class="text-neutral-900 block">Run.</span>
+              <span class="text-neutral-900 block">Sweat.</span>
+              <span class="text-dadbod-green block italic">Complain.</span>
+              <span class="text-dadbod-red block italic">Repeat.</span>
+            </h1>
+            
+            <!-- Subtext -->
+            <p class="mt-8 text-lg text-neutral-700 max-w-md">
+              Denver's most lovably unserious run club. Show up, do a loop around Wash Park, high-five a stranger, and go live your life. <strong class="text-neutral-900">No pace requirements. No spandex required.</strong>
+            </p>
+            
+            <!-- Signup Form -->
+            <form id="signup-form" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md">
               <input
                 type="email"
                 id="email-input"
                 placeholder="your@email.com"
                 required
-                class="flex-1 rounded-full border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="flex-1 rounded-full border-2 border-neutral-300 px-5 py-3 text-sm focus:border-dadbod-red focus:outline-none"
               />
               <button
                 type="submit"
-                class="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="rounded-full bg-dadbod-red px-6 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors whitespace-nowrap"
               >
-                Sign up
+                Count me in →
               </button>
-            </div>
-          </form>
+            </form>
+            <p id="signup-message" class="mt-2 text-sm hidden"></p>
+            <p class="mt-3 text-xs text-neutral-500">
+              No spam. Just run dates, bad dad jokes, and the occasional post-run beer tip.
+            </p>
+          </div>
           
-          <p id="signup-message" class="mt-3 text-sm hidden"></p>
-          <p class="mt-3 text-xs text-neutral-500">
-            (Showing up works well too)
-          </p>
+          <!-- Right Column - Dark Card -->
+          <div id="next-run" class="bg-gradient-to-br from-dadbod-teal to-neutral-900 px-6 py-12 lg:py-20 lg:px-12 text-white">
+            <h2 class="text-dadbod-red font-bold uppercase tracking-widest text-sm">Next Run</h2>
+            
+            <div class="mt-8 space-y-6">
+              <!-- When -->
+              <div class="flex items-start gap-4">
+                <div class="text-2xl">📅</div>
+                <div>
+                  <div class="text-xs uppercase tracking-wide text-white/60">When</div>
+                  <div class="text-xl font-bold">Every Wednesday</div>
+                  <div class="text-sm text-white/70">6:30pm sharp (ish)</div>
+                </div>
+              </div>
+              
+              <!-- Where -->
+              <div class="flex items-start gap-4">
+                <div class="text-2xl">📍</div>
+                <div>
+                  <div class="text-xs uppercase tracking-wide text-white/60">Where</div>
+                  <div class="text-xl font-bold">Wash Park Boathouse</div>
+                  <a 
+                    href="https://www.google.com/maps/search/?api=1&query=Washington+Park+Boathouse+Denver"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-sm text-dadbod-red hover:underline"
+                  >
+                    Get directions →
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Distance -->
+              <div class="flex items-start gap-4">
+                <div class="text-2xl">🏃</div>
+                <div>
+                  <div class="text-xs uppercase tracking-wide text-white/60">Distance</div>
+                  <div class="text-xl font-bold">3-5 miles</div>
+                  <div class="text-sm text-white/70">At whatever pace feels right</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Notice Box -->
+            <div class="mt-10 bg-dadbod-red/20 border border-dadbod-red/40 rounded-2xl px-5 py-4">
+              <p class="text-sm">
+                <span class="text-dadbod-red font-semibold">Prefer to just show up?</span>
+                <span class="text-white/80 italic"> That works too — we'll be there rain, shine, or questionable life decisions.</span>
+              </p>
+            </div>
+          </div>
+          
         </div>
-
-        <div id="contact" class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 class="text-xl font-bold">Contact</h2>
-          <p class="mt-3 text-neutral-700">
+      </section>
+      
+      <!-- Footer Banner -->
+      <section class="bg-dadbod-teal">
+        <div class="mx-auto max-w-7xl px-6 py-4">
+          <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-sm font-bold text-white uppercase tracking-wide">
+            <div class="flex items-center gap-2">
+              <span>🆓</span>
+              <span>Always Free</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>🐢</span>
+              <span>All Paces Welcome</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>🍺</span>
+              <span>Post-Run Beer Optional (But Encouraged)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Contact Section -->
+      <section id="contact" class="bg-dadbod-cream py-16">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+          <h2 class="text-2xl font-bold">Get in Touch</h2>
+          <p class="mt-4 text-neutral-600">
             Questions, ideas, heckling, sponsorship offers from Big Elastic Waistband? Send it.
           </p>
-
-          <div class="mt-4 space-y-2 text-sm">
-            <div><span class="font-semibold">Email:</span> <a class="text-blue-600 hover:text-blue-700" href="mailto:hello@dadbodsrunningclub.com">hello@dadbodsrunningclub.com</a></div>
+          <div class="mt-6 space-y-2 text-sm">
+            <div><span class="font-semibold">Email:</span> <a class="text-dadbod-red hover:underline" href="mailto:hello@dadbodsrunningclub.com">hello@dadbodsrunningclub.com</a></div>
             <div><span class="font-semibold">Instagram:</span> <span class="text-neutral-500">coming soon</span></div>
           </div>
         </div>
       </section>
-
-      <footer class="mt-12 pb-6 text-center text-xs text-neutral-500">
-        © <span id="y"></span> Dad Bods Running Club • Denver • We stretch (emotionally)
+      
+      <footer class="bg-dadbod-teal py-4 text-center text-xs text-white/60">
+        © <span id="y"></span> Dad Bods Running Club · Denver · We stretch (emotionally)
       </footer>
     </main>
 
@@ -202,13 +232,13 @@
                 id="modal-email-input"
                 placeholder="your@email.com"
                 required
-                class="w-full rounded-full border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full rounded-full border-2 border-neutral-300 px-5 py-3 text-sm focus:border-dadbod-red focus:outline-none"
               />
               <button
                 type="submit"
-                class="mt-4 w-full rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="mt-4 w-full rounded-full bg-dadbod-red px-5 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
               >
-                Sign up
+                Count me in →
               </button>
             </form>
             <p id="modal-error" class="mt-3 text-sm text-red-600 text-center hidden"></p>
@@ -227,7 +257,7 @@
             </p>
             <button
               id="modal-done-btn"
-              class="mt-6 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
+              class="mt-6 rounded-full bg-dadbod-red px-6 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
             >
               Let's go!
             </button>
@@ -268,7 +298,7 @@
         if (!email) return;
 
         message.textContent = "Signing up...";
-        message.className = "mt-3 text-sm text-neutral-600";
+        message.className = "mt-2 text-sm text-neutral-600";
         
         try {
           await submitSignup(email);
@@ -279,7 +309,7 @@
           showSuccessModal();
         } catch (error) {
           message.textContent = "Something went wrong. Try again or just show up Wednesday!";
-          message.className = "mt-3 text-sm text-red-600";
+          message.className = "mt-2 text-sm text-red-600";
         }
       });
       
