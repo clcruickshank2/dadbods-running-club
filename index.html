@@ -7,6 +7,9 @@
 
     <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <!-- Optional: tweak a couple Tailwind defaults -->
     <script>
@@ -32,12 +35,12 @@
           <a href="#contact" class="font-medium text-neutral-900 hover:text-neutral-700">Contact</a>
         </nav>
 
-        <a
-          href="#join"
+        <button
+          id="open-modal-btn"
           class="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Join Now!
-        </a>
+        </button>
       </div>
     </header>
 
@@ -171,47 +174,185 @@
       </footer>
     </main>
 
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="fixed inset-0 z-50 hidden">
+      <!-- Backdrop -->
+      <div id="modal-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      <!-- Modal Content -->
+      <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
+          <!-- Close button -->
+          <button id="close-modal-btn" class="absolute right-4 top-4 text-neutral-400 hover:text-neutral-600">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          
+          <!-- Step 1: Signup Form -->
+          <div id="modal-step-1">
+            <h2 class="text-2xl font-bold text-center">Join the Club</h2>
+            <p class="mt-2 text-center text-neutral-600">
+              Sign up for updates and occasional dad jokes.
+            </p>
+            
+            <form id="modal-signup-form" class="mt-6">
+              <input
+                type="email"
+                id="modal-email-input"
+                placeholder="your@email.com"
+                required
+                class="w-full rounded-full border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                class="mt-4 w-full rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Sign up
+              </button>
+            </form>
+            <p id="modal-error" class="mt-3 text-sm text-red-600 text-center hidden"></p>
+          </div>
+          
+          <!-- Step 2: Success -->
+          <div id="modal-step-2" class="hidden text-center">
+            <img
+              src="/logo.png"
+              alt="Dad Bods Running Club logo"
+              class="mx-auto h-32 w-32"
+            />
+            <h2 class="mt-4 text-2xl font-bold">You're in!</h2>
+            <p class="mt-2 text-neutral-600">
+              Welcome to the club. See you Wednesday at Wash Park!
+            </p>
+            <p class="mt-1 text-sm text-neutral-500 italic">
+              (Stretching optional, high-fives mandatory)
+            </p>
+            <button
+              id="modal-done-btn"
+              class="mt-6 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
+            >
+              Let's go!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
 
-      // Supabase signup form
+      // Supabase config
       const SUPABASE_URL = "https://iicupxcgwyrmonczlvas.supabase.co";
       const SUPABASE_KEY = "sb_publishable_fRb8M55oBl-f17q412JKlA_2e5e0YZv";
 
+      // Signup function (reusable)
+      async function submitSignup(email) {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/Signups`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({ email })
+        });
+        if (!response.ok) throw new Error("Signup failed");
+        return true;
+      }
+
+      // Inline form (on page)
       document.getElementById("signup-form").addEventListener("submit", async (e) => {
         e.preventDefault();
-        
         const emailInput = document.getElementById("email-input");
         const message = document.getElementById("signup-message");
         const email = emailInput.value.trim();
-        
         if (!email) return;
 
         message.textContent = "Signing up...";
         message.className = "mt-3 text-sm text-neutral-600";
         
         try {
-          const response = await fetch(`${SUPABASE_URL}/rest/v1/Signups`, {
-            method: "POST",
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization": `Bearer ${SUPABASE_KEY}`,
-              "Content-Type": "application/json",
-              "Prefer": "return=minimal"
-            },
-            body: JSON.stringify({ email })
-          });
-
-          if (response.ok) {
-            message.textContent = "You're in! We'll be in touch.";
-            message.className = "mt-3 text-sm text-green-600 font-semibold";
-            emailInput.value = "";
-          } else {
-            throw new Error("Signup failed");
-          }
+          await submitSignup(email);
+          message.textContent = "You're in! We'll be in touch.";
+          message.className = "mt-3 text-sm text-green-600 font-semibold";
+          emailInput.value = "";
         } catch (error) {
           message.textContent = "Something went wrong. Try again or just show up Wednesday!";
           message.className = "mt-3 text-sm text-red-600";
+        }
+      });
+
+      // Modal elements
+      const modal = document.getElementById("signup-modal");
+      const modalStep1 = document.getElementById("modal-step-1");
+      const modalStep2 = document.getElementById("modal-step-2");
+      const modalError = document.getElementById("modal-error");
+      const modalEmailInput = document.getElementById("modal-email-input");
+
+      // Open modal
+      document.getElementById("open-modal-btn").addEventListener("click", () => {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        modalEmailInput.focus();
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+        // Reset to step 1 after a delay
+        setTimeout(() => {
+          modalStep1.classList.remove("hidden");
+          modalStep2.classList.add("hidden");
+          modalEmailInput.value = "";
+          modalError.classList.add("hidden");
+        }, 300);
+      }
+
+      document.getElementById("close-modal-btn").addEventListener("click", closeModal);
+      document.getElementById("modal-backdrop").addEventListener("click", closeModal);
+      document.getElementById("modal-done-btn").addEventListener("click", closeModal);
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+
+      // Modal form submission
+      document.getElementById("modal-signup-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = modalEmailInput.value.trim();
+        if (!email) return;
+
+        modalError.classList.add("hidden");
+        
+        try {
+          await submitSignup(email);
+          
+          // Switch to success step
+          modalStep1.classList.add("hidden");
+          modalStep2.classList.remove("hidden");
+          
+          // Fire confetti!
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+          
+          // Extra confetti bursts
+          setTimeout(() => {
+            confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+          }, 250);
+          
+        } catch (error) {
+          modalError.textContent = "Something went wrong. Try again!";
+          modalError.classList.remove("hidden");
         }
       });
     </script>
