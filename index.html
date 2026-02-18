@@ -40,26 +40,28 @@
   <body class="bg-dadbod-cream text-neutral-900">
     <!-- Top Nav -->
     <header class="bg-black">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <!-- Logo + Name -->
+      <div class="flex items-center justify-between px-4 py-4">
+        <!-- Logo + Name (left aligned) -->
         <div class="flex items-center gap-3">
-          <img src="/logo.png" alt="Dad Bods Running Club" class="h-10 w-10 rounded-full" />
-          <span class="text-white font-bold text-lg">Dad Bods<br class="sm:hidden" /> Running Club</span>
+          <img src="/logo.png" alt="Dad Bods Running Club" class="h-12 w-12 rounded-full" />
+          <span class="text-white font-bold text-xl md:text-2xl">Dad Bods Running Club</span>
         </div>
         
-        <!-- Nav -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-white/90 uppercase tracking-wide">
-          <a href="about.html" class="hover:text-white">About</a>
-          <a href="#next-run" class="hover:text-white">Schedule</a>
-          <a href="#contact" class="hover:text-white">Contact</a>
-        </nav>
+        <!-- Nav + Button (grouped right) -->
+        <div class="flex items-center gap-6">
+          <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-white/90 uppercase tracking-wide">
+            <a href="about.html" class="hover:text-white">About</a>
+            <a href="#next-run" class="hover:text-white">Schedule</a>
+            <a href="#contact" class="hover:text-white">Contact</a>
+          </nav>
 
-        <button
-          id="open-modal-btn"
-          class="rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
-        >
-          Join the Club
-        </button>
+          <button
+            id="open-modal-btn"
+            class="rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+          >
+            Join the Club
+          </button>
+        </div>
       </div>
     </header>
 
