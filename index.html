@@ -126,14 +126,28 @@
         <div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
           <h2 class="text-xl font-bold">Join Now</h2>
           <p class="mt-3 text-neutral-700">
-            Want to make it official? Signup for updates and occasional dad jokes. 
+            Want to make it official? Sign up for updates and occasional dad jokes.
           </p>
-          <a
-            class="mt-5 inline-flex items-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
-            href="mailto:hello@dadbodsrunningclub.com?subject=Joining%20Dad%20Bods%20Running%20Club"
-          >
-            Signup here
-          </a>
+          
+          <form id="signup-form" class="mt-4">
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <input
+                type="email"
+                id="email-input"
+                placeholder="your@email.com"
+                required
+                class="flex-1 rounded-full border border-neutral-300 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                class="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+          
+          <p id="signup-message" class="mt-3 text-sm hidden"></p>
           <p class="mt-3 text-xs text-neutral-500">
             (Showing up works well too)
           </p>
@@ -159,6 +173,47 @@
 
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
+
+      // Supabase signup form
+      const SUPABASE_URL = "https://iicupxcgwyrmonczlvas.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_fRb8M55oBl-f17q412JKlA_2e5e0YZv";
+
+      document.getElementById("signup-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById("email-input");
+        const message = document.getElementById("signup-message");
+        const email = emailInput.value.trim();
+        
+        if (!email) return;
+
+        message.textContent = "Signing up...";
+        message.className = "mt-3 text-sm text-neutral-600";
+        
+        try {
+          const response = await fetch(`${SUPABASE_URL}/rest/v1/Signups`, {
+            method: "POST",
+            headers: {
+              "apikey": SUPABASE_KEY,
+              "Authorization": `Bearer ${SUPABASE_KEY}`,
+              "Content-Type": "application/json",
+              "Prefer": "return=minimal"
+            },
+            body: JSON.stringify({ email })
+          });
+
+          if (response.ok) {
+            message.textContent = "You're in! We'll be in touch.";
+            message.className = "mt-3 text-sm text-green-600 font-semibold";
+            emailInput.value = "";
+          } else {
+            throw new Error("Signup failed");
+          }
+        } catch (error) {
+          message.textContent = "Something went wrong. Try again or just show up Wednesday!";
+          message.className = "mt-3 text-sm text-red-600";
+        }
+      });
     </script>
   </body>
 </html>
