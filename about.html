@@ -7,6 +7,11 @@
 
     <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for brush-style text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
     <script>
       tailwind.config = {
@@ -14,10 +19,13 @@
           extend: {
             fontFamily: {
               sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"],
+              marker: ["Permanent Marker", "cursive"],
             },
             colors: {
-              'dadbod-teal': '#4AAAA5',
-              'dadbod-teal-light': '#E8F5F4',
+              'dadbod-red': '#D94B1F',
+              'dadbod-teal': '#134E4A',
+              'dadbod-teal-bright': '#1B9E8A',
+              'dadbod-cream': '#FDF8F3',
             },
           },
         },
@@ -25,82 +33,158 @@
     </script>
   </head>
 
-  <body class="bg-neutral-50 text-neutral-900">
+  <body class="bg-dadbod-cream text-neutral-900">
     <!-- Top Nav -->
-    <header class="sticky top-0 z-50 border-b border-neutral-200/70 bg-neutral-50/80 backdrop-blur">
-      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <nav class="flex items-center gap-5 text-sm">
-          <a href="index.html" class="font-medium text-neutral-900 hover:text-neutral-700">Overview</a>
-          <a href="about.html" class="font-medium text-neutral-900 hover:text-neutral-700">About Us</a>
-          <a href="index.html#contact" class="font-medium text-neutral-900 hover:text-neutral-700">Contact</a>
-        </nav>
-
-        <a
-          href="index.html#join"
-          class="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Join Now!
+    <header class="bg-black">
+      <div class="flex items-center justify-between px-4 py-2.5">
+        <!-- Logo + Name (left aligned) -->
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="/logo.png" alt="Dad Bods Running Club" class="h-10 w-10 rounded-full" />
+          <span class="text-white font-bold text-xl md:text-2xl">Dad Bods Running Club</span>
         </a>
+        
+        <!-- Nav + Button (grouped right) -->
+        <div class="flex items-center gap-6">
+          <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-white/90 uppercase tracking-wide">
+            <a href="about.html" class="hover:text-white">About</a>
+            <a href="index.html#next-run" class="hover:text-white">Schedule</a>
+            <a href="index.html#contact" class="hover:text-white">Contact</a>
+          </nav>
+
+          <a
+            href="index.html#join"
+            class="rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+          >
+            Join the Club
+          </a>
+        </div>
       </div>
     </header>
 
-    <main class="mx-auto max-w-5xl px-4 py-10">
-      <!-- Title -->
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-center">
-        About Us
-      </h1>
-
-      <p class="mt-4 text-center text-xl text-neutral-600 italic">
-        The guys behind the dad bods
-      </p>
-
-      <!-- Founders Grid -->
-      <div class="mt-12 grid gap-8 md:grid-cols-2">
-        
-        <!-- Chris -->
-        <div class="rounded-3xl border-2 border-dadbod-teal bg-white p-6 shadow-sm">
-          <div class="flex flex-col items-center">
-            <img
-              src="/chris.png"
-              alt="Chris"
-              class="h-40 w-40 rounded-full object-cover border-2 border-neutral-900"
-            />
-            <h2 class="mt-4 text-2xl font-bold">Chris</h2>
-          </div>
-          <p class="mt-4 text-neutral-700">
-            Chris is a Canadian import who landed in Denver two years ago. He's married, has a one-year-old, and a Sheepadoodle named Sammy who requires more attention than most people. A proudly mediocre runner since middle school, Chris is training for two half marathons in 2026 and fully embracing the "Dad Bod" lifestyle.
-          </p>
+    <main>
+      <!-- Hero Section -->
+      <section class="bg-dadbod-cream pt-2">
+        <div class="bg-gradient-to-br from-dadbod-teal to-neutral-900 px-6 py-12 text-center text-white">
+          <h1 class="font-marker text-5xl md:text-6xl lg:text-7xl">About Us</h1>
+          <p class="mt-4 text-xl text-white/80 italic">The guys behind the dad bods</p>
         </div>
+      </section>
+      
+      <!-- Founders Section -->
+      <section class="bg-dadbod-cream py-12">
+        <div class="mx-auto max-w-5xl px-6">
+          <div class="grid gap-8 md:grid-cols-2">
+            
+            <!-- Chris -->
+            <div class="rounded-3xl bg-white p-8 shadow-lg border-2 border-dadbod-teal-bright">
+              <div class="flex flex-col items-center">
+                <img
+                  src="/chris.png"
+                  alt="Chris"
+                  class="h-40 w-40 rounded-full object-cover border-4 border-black"
+                />
+                <h2 class="mt-4 text-2xl font-bold">Chris</h2>
+              </div>
+              <p class="mt-4 text-neutral-700 text-center">
+                Chris is a Canadian import who landed in Denver two years ago. He's married, has a one-year-old, and a Sheepadoodle named Sammy who requires more attention than most people. A proudly mediocre runner since middle school, Chris is training for two half marathons in 2026 and fully embracing the "Dad Bod" lifestyle.
+              </p>
+            </div>
 
-        <!-- Jackson -->
-        <div class="rounded-3xl border-2 border-dadbod-teal bg-white p-6 shadow-sm">
-          <div class="flex flex-col items-center">
-            <img
-              src="/jackson.png"
-              alt="Jackson"
-              class="h-40 w-40 rounded-full object-cover border-2 border-neutral-900"
-            />
-            <h2 class="mt-4 text-2xl font-bold">Jackson</h2>
+            <!-- Jackson -->
+            <div class="rounded-3xl bg-white p-8 shadow-lg border-2 border-dadbod-teal-bright">
+              <div class="flex flex-col items-center">
+                <img
+                  src="/jackson.png"
+                  alt="Jackson"
+                  class="h-40 w-40 rounded-full object-cover border-4 border-black"
+                />
+                <h2 class="mt-4 text-2xl font-bold">Jackson</h2>
+              </div>
+              <p class="mt-4 text-neutral-700 text-center">
+                Jackson has been in Denver for four years after relocating from San Diego. Soccer is his true passion, but running comes with the territory — so here we are. He's married with two kids and can often be found out on family walks around Wash Park. He's training for zero half marathons in 2026, but may consider a late entry just to beat Chris.
+              </p>
+            </div>
+
           </div>
-          <p class="mt-4 text-neutral-700">
-            Jackson has been in Denver for four years after relocating from San Diego. Soccer is his true passion, but running comes with the territory — so here we are. He's married with two kids and can often be found out on family walks around Wash Park. He's training for zero half marathons in 2026, but may consider a late entry just to beat Chris.
-          </p>
         </div>
-
-      </div>
-
-      <!-- Back Button -->
-      <div class="mt-12 text-center">
-        <a
-          href="index.html"
-          class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50"
-        >
-          ← Back to Overview
-        </a>
-      </div>
-
-      <footer class="mt-12 pb-6 text-center text-xs text-neutral-500">
-        © <span id="y"></span> Dad Bods Running Club • Denver • We stretch (emotionally)
+      </section>
+      
+      <!-- FAQ Section -->
+      <section class="bg-white py-12">
+        <div class="mx-auto max-w-3xl px-6">
+          <h2 class="font-marker text-4xl text-center text-dadbod-teal">FAQ</h2>
+          <p class="mt-2 text-center text-neutral-600 italic">Questions you might have (or not)</p>
+          
+          <div class="mt-10 space-y-6">
+            
+            <!-- FAQ Item -->
+            <div class="border-l-4 border-dadbod-teal-bright pl-6">
+              <h3 class="text-lg font-bold">Do I need to be a dad to join?</h3>
+              <p class="mt-2 text-neutral-700">Nope. All bods welcome — dad bods, mom bods, no-kid bods, dog-parent bods. We're inclusive like that.</p>
+            </div>
+            
+            <!-- FAQ Item -->
+            <div class="border-l-4 border-dadbod-teal-bright pl-6">
+              <h3 class="text-lg font-bold">What if I'm slow?</h3>
+              <p class="mt-2 text-neutral-700">Perfect. We have all paces. No one gets left behind, and there's zero judgment. This isn't a race — it's a jog with friends.</p>
+            </div>
+            
+            <!-- FAQ Item -->
+            <div class="border-l-4 border-dadbod-teal-bright pl-6">
+              <h3 class="text-lg font-bold">Do I need to sign up?</h3>
+              <p class="mt-2 text-neutral-700">Nope. Just show up at Wash Park Boathouse on Wednesday at 6:30pm. Signing up just gets you updates and bad jokes via email.</p>
+            </div>
+            
+            <!-- FAQ Item -->
+            <div class="border-l-4 border-dadbod-teal-bright pl-6">
+              <h3 class="text-lg font-bold">Is there a cost?</h3>
+              <p class="mt-2 text-neutral-700">Always free. Forever. The only cost is the emotional toll of listening to our dad jokes.</p>
+            </div>
+            
+            <!-- FAQ Item -->
+            <div class="border-l-4 border-dadbod-teal-bright pl-6">
+              <h3 class="text-lg font-bold">What about the post-run beer?</h3>
+              <p class="mt-2 text-neutral-700">Optional but encouraged. We usually hit a nearby spot after the run. Water and high-fives also acceptable.</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      
+      <!-- Back to Home -->
+      <section class="bg-dadbod-cream py-8">
+        <div class="text-center">
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-full bg-dadbod-red px-6 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+          >
+            ← Back to Home
+          </a>
+        </div>
+      </section>
+      
+      <!-- Footer Banner -->
+      <section class="bg-black">
+        <div class="mx-auto max-w-7xl px-6 py-4">
+          <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-sm font-bold text-white uppercase tracking-wide">
+            <div class="flex items-center gap-2">
+              <span>🆓</span>
+              <span>Always Free</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>🐢</span>
+              <span>All Paces Welcome</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>🍺</span>
+              <span>Post-Run Beer Optional (But Encouraged)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <footer class="bg-dadbod-teal py-4 text-center text-xs text-white/60">
+        © <span id="y"></span> Dad Bods Running Club · Denver · We stretch (emotionally)
       </footer>
     </main>
 
