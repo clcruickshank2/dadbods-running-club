@@ -272,14 +272,37 @@
         
         try {
           await submitSignup(email);
-          message.textContent = "You're in! We'll be in touch.";
-          message.className = "mt-3 text-sm text-green-600 font-semibold";
           emailInput.value = "";
+          message.classList.add("hidden");
+          
+          // Show success modal with confetti
+          showSuccessModal();
         } catch (error) {
           message.textContent = "Something went wrong. Try again or just show up Wednesday!";
           message.className = "mt-3 text-sm text-red-600";
         }
       });
+      
+      // Show success modal with confetti
+      function showSuccessModal() {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        modalStep1.classList.add("hidden");
+        modalStep2.classList.remove("hidden");
+        
+        // Fire confetti!
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        
+        // Extra confetti bursts
+        setTimeout(() => {
+          confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 250);
+      }
 
       // Modal elements
       const modal = document.getElementById("signup-modal");
@@ -329,24 +352,7 @@
         
         try {
           await submitSignup(email);
-          
-          // Switch to success step
-          modalStep1.classList.add("hidden");
-          modalStep2.classList.remove("hidden");
-          
-          // Fire confetti!
-          confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-          });
-          
-          // Extra confetti bursts
-          setTimeout(() => {
-            confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
-            confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
-          }, 250);
-          
+          showSuccessModal();
         } catch (error) {
           modalError.textContent = "Something went wrong. Try again!";
           modalError.classList.remove("hidden");
@@ -355,4 +361,3 @@
     </script>
   </body>
 </html>
-
