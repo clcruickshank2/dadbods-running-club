@@ -101,7 +101,7 @@
         <div class="grid lg:grid-cols-[60%_40%] gap-0">
           
           <!-- Left Column - Cream Background -->
-          <div class="px-6 py-4 lg:py-5 lg:px-12">
+          <div class="relative px-6 py-4 lg:py-5 lg:px-12 overflow-hidden">
             <!-- Teal Badge -->
             <div class="inline-flex items-center gap-2 bg-dadbod-teal-bright rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-bold text-white uppercase tracking-wide">
               <span class="text-dadbod-red">📍</span>
@@ -145,6 +145,14 @@
             <p class="mt-3 text-xs text-neutral-500">
               No spam. Just run dates, bad dad jokes, and the occasional post-run beer tip.
             </p>
+            
+            <!-- Ghosted Logo -->
+            <img 
+              src="/logo.png" 
+              alt="" 
+              class="hidden lg:block absolute -bottom-16 -right-16 w-80 h-80 opacity-10 pointer-events-none select-none"
+              aria-hidden="true"
+            />
           </div>
           
           <!-- Right Column - Dark Card -->
