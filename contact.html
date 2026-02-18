@@ -1,1 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Dad Bods Running Club (Denver)</title>
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Google Fonts for brush-style text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Apple Color Emoji", "Segoe UI Emoji"],
+              marker: ["Permanent Marker", "cursive"],
+            },
+            colors: {
+              'dadbod-red': '#D94B1F',
+              'dadbod-teal': '#134E4A',
+              'dadbod-teal-bright': '#1B9E8A',
+              'dadbod-cream': '#FDF8F3',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-dadbod-cream text-neutral-900">
+    <!-- Top Nav -->
+    <header class="bg-black">
+      <div class="flex items-center justify-between px-4 py-2.5">
+        <!-- Logo + Name (left aligned) -->
+        <a href="index.html" class="flex items-center gap-2 md:gap-3">
+          <img src="/logo.png" alt="Dad Bods Running Club" class="h-8 w-8 md:h-10 md:w-10 rounded-full" />
+          <span class="text-white font-bold text-base md:text-2xl">Dad Bods Running Club</span>
+        </a>
+        
+        <!-- Nav + Button (grouped right) - Desktop -->
+        <div class="hidden md:flex items-center gap-6">
+          <nav class="flex items-center gap-6 text-sm font-semibold text-white/90 uppercase tracking-wide">
+            <a href="about.html" class="hover:text-white">About</a>
+            <a href="index.html#next-run" class="hover:text-white">Schedule</a>
+            <a href="contact.html" class="hover:text-white">Contact</a>
+          </nav>
+
+          <button
+            id="open-modal-btn"
+            class="rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+          >
+            Join the Club
+          </button>
+        </div>
+        
+        <!-- Hamburger button - Mobile -->
+        <button
+          id="hamburger-btn"
+          class="md:hidden text-white p-2"
+          aria-label="Open menu"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 px-4 pb-4">
+        <nav class="flex flex-col gap-3 text-sm font-semibold text-white/90 uppercase tracking-wide">
+          <a href="about.html" class="hover:text-white py-2">About</a>
+          <a href="index.html#next-run" class="hover:text-white py-2">Schedule</a>
+          <a href="contact.html" class="hover:text-white py-2">Contact</a>
+        </nav>
+        <button
+          id="open-modal-btn-mobile"
+          class="mt-4 w-full rounded-full bg-dadbod-red px-5 py-2.5 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+        >
+          Join the Club
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Contact Section -->
+      <section class="bg-dadbod-cream py-16 min-h-[60vh]">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+          <h1 class="font-marker text-4xl md:text-5xl text-dadbod-teal">Get in Touch</h1>
+          <p class="mt-6 text-lg text-neutral-600">
+            Questions, ideas, heckling, sponsorship offers from Big Elastic Waistband? Send it.
+          </p>
+          
+          <div class="mt-10 space-y-4">
+            <div class="rounded-2xl bg-white p-6 shadow-sm border-l-4 border-dadbod-teal-bright">
+              <span class="text-2xl">📧</span>
+              <div class="mt-2 font-bold text-lg">Email</div>
+              <a class="text-dadbod-red hover:underline text-lg" href="mailto:hello@dadbodsrunningclub.com">hello@dadbodsrunningclub.com</a>
+            </div>
+            
+            <div class="rounded-2xl bg-white p-6 shadow-sm border-l-4 border-dadbod-teal-bright">
+              <span class="text-2xl">📸</span>
+              <div class="mt-2 font-bold text-lg">Instagram</div>
+              <span class="text-neutral-500 italic">Coming soon...</span>
+            </div>
+          </div>
+          
+          <p class="mt-10 text-neutral-500 text-sm">
+            Or just show up Wednesday at Wash Park. We're the ones wheezing near the boathouse.
+          </p>
+        </div>
+      </section>
+      
+      <!-- Back to Home -->
+      <section class="bg-dadbod-cream pb-12">
+        <div class="text-center">
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-full bg-dadbod-red px-6 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+          >
+            ← Back to Home
+          </a>
+        </div>
+      </section>
+      
+      <!-- Footer Banner -->
+      <section class="bg-black">
+        <div class="mx-auto max-w-7xl px-6 py-4">
+          <div class="flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-12 text-sm font-bold text-white uppercase tracking-wide text-center md:text-left">
+            <div class="flex items-center gap-2">
+              <span>🆓</span>
+              <span>Always Free</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>🐢</span>
+              <span>All Paces Welcome</span>
+            </div>
+            <div class="flex items-start gap-2 justify-center max-w-[280px] md:max-w-none">
+              <span>🍺</span>
+              <span>Post-Run Beer Optional (But Encouraged)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <footer class="bg-dadbod-teal py-4 text-center text-xs text-white/60">
+        © <span id="y"></span> Dad Bods Running Club · Denver · We stretch (emotionally)
+      </footer>
+    </main>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="fixed inset-0 z-50 hidden">
+      <!-- Backdrop -->
+      <div id="modal-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      <!-- Modal Content -->
+      <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
+          <!-- Close button -->
+          <button id="close-modal-btn" class="absolute right-4 top-4 text-neutral-400 hover:text-neutral-600">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          
+          <!-- Step 1: Signup Form -->
+          <div id="modal-step-1">
+            <h2 class="text-2xl font-bold text-center">Join the Club</h2>
+            <p class="mt-2 text-center text-neutral-600">
+              Sign up for updates and occasional dad jokes.
+            </p>
+            
+            <form id="modal-signup-form" class="mt-6">
+              <input
+                type="email"
+                id="modal-email-input"
+                placeholder="your@email.com"
+                required
+                class="w-full rounded-full border-2 border-neutral-300 px-5 py-3 text-sm focus:border-dadbod-red focus:outline-none"
+              />
+              <button
+                type="submit"
+                class="mt-4 w-full rounded-full bg-dadbod-red px-5 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+              >
+                Count me in →
+              </button>
+            </form>
+            <p id="modal-error" class="mt-3 text-sm text-red-600 text-center hidden"></p>
+          </div>
+          
+          <!-- Step 2: Success -->
+          <div id="modal-step-2" class="hidden text-center">
+            <img
+              src="/logo.png"
+              alt="Dad Bods Running Club logo"
+              class="mx-auto h-32 w-32"
+            />
+            <h2 class="mt-4 text-2xl font-bold">Welcome to the club!</h2>
+            <p class="mt-2 text-neutral-600">
+              Stretching optional, high-fives mandatory.
+            </p>
+            <button
+              id="modal-done-btn"
+              class="mt-6 rounded-full bg-dadbod-red px-6 py-3 text-sm font-bold text-white uppercase tracking-wide hover:bg-red-700 transition-colors"
+            >
+              Let's go!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+
+      // Supabase config
+      const SUPABASE_URL = "https://iicupxcgwyrmonczlvas.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_fRb8M55oBl-f17q412JKlA_2e5e0YZv";
+
+      // Signup function
+      async function submitSignup(email) {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/Signups`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({ email })
+        });
+        if (!response.ok) throw new Error("Signup failed");
+        return true;
+      }
+
+      // Show success modal with confetti
+      function showSuccessModal() {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        modalStep1.classList.add("hidden");
+        modalStep2.classList.remove("hidden");
+        
+        // Fire confetti!
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        
+        // Extra confetti bursts
+        setTimeout(() => {
+          confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 250);
+      }
+
+      // Modal elements
+      const modal = document.getElementById("signup-modal");
+      const modalStep1 = document.getElementById("modal-step-1");
+      const modalStep2 = document.getElementById("modal-step-2");
+      const modalError = document.getElementById("modal-error");
+      const modalEmailInput = document.getElementById("modal-email-input");
+
+      // Mobile menu toggle
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      
+      hamburgerBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+      
+      function closeMobileMenu() {
+        mobileMenu.classList.add("hidden");
+      }
+
+      // Open modal (desktop)
+      document.getElementById("open-modal-btn").addEventListener("click", () => {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        modalEmailInput.focus();
+      });
+      
+      // Open modal (mobile)
+      document.getElementById("open-modal-btn-mobile").addEventListener("click", () => {
+        closeMobileMenu();
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        modalEmailInput.focus();
+      });
+
+      // Close modal
+      function closeModal() {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+        // Reset to step 1 after a delay
+        setTimeout(() => {
+          modalStep1.classList.remove("hidden");
+          modalStep2.classList.add("hidden");
+          modalEmailInput.value = "";
+          modalError.classList.add("hidden");
+        }, 300);
+      }
+
+      document.getElementById("close-modal-btn").addEventListener("click", closeModal);
+      document.getElementById("modal-backdrop").addEventListener("click", closeModal);
+      document.getElementById("modal-done-btn").addEventListener("click", closeModal);
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+
+      // Modal form submission
+      document.getElementById("modal-signup-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = modalEmailInput.value.trim();
+        if (!email) return;
+
+        modalError.classList.add("hidden");
+        
+        try {
+          await submitSignup(email);
+          showSuccessModal();
+        } catch (error) {
+          modalError.textContent = "Something went wrong. Try again!";
+          modalError.classList.remove("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
 
