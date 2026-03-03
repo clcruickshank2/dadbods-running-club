@@ -110,10 +110,16 @@
             </div>
             
             <!-- Sticky note: First run -->
-            <div class="absolute right-6 top-24 md:right-12 md:top-28 w-28 h-28 md:w-32 md:h-32 flex flex-col items-center justify-center font-marker text-base md:text-lg text-neutral-800 bg-[#fef08a] shadow-md border border-amber-200/60 -rotate-2 hover:rotate-0 transition-transform duration-200" style="box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
-              <span>📌</span>
-              <span class="leading-tight text-center">First run:</span>
-              <span class="leading-tight text-center font-bold">March 25</span>
+            <div class="absolute right-4 top-16 md:right-8 md:top-20 w-[10.5rem] h-[10.5rem] md:w-[12rem] md:h-[12rem] -rotate-[30deg] hover:rotate-[-25deg] transition-transform duration-200" style="box-shadow: 0 6px 12px -2px rgb(0 0 0 / 0.2), 0 3px 6px -3px rgb(0 0 0 / 0.12);">
+              <div class="relative w-full h-full bg-[#fef08a] border border-amber-200/60 overflow-hidden">
+                <!-- Folded corner -->
+                <div class="absolute bottom-0 right-0 w-0 h-0 border-l-[2.5rem] border-l-transparent border-b-[2.5rem] border-b-amber-400/90" aria-hidden="true"></div>
+                <div class="relative w-full h-full flex flex-col items-center justify-center font-marker text-lg md:text-xl text-neutral-800 px-2">
+                  <span>📌</span>
+                  <span class="leading-tight text-center">First run:</span>
+                  <span class="leading-tight text-center font-bold">March 25</span>
+                </div>
+              </div>
             </div>
             
             <!-- Big Headline -->
